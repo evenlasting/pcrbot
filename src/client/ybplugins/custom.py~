@@ -70,16 +70,17 @@ class Custom:
         # 注意：这是一个异步函数，禁止使用阻塞操作（比如requests）
 
         # 如果需要使用，请注释掉下面一行
+        return
 
         cmd = ctx['raw_message']
-        if cmd == 'cjb':
+        if cmd == '你好':
 
             # 调用api发送消息，详见cqhttp文档
             await self.api.send_private_msg(
-                user_id=996955087, message='收到问好')
+                user_id=123456, message='收到问好')
 
             # 返回字符串：发送消息并阻止后续插件
-            return 'sb'
+            return '世界'
 
         # 返回布尔值：是否阻止后续插件（返回None视作False）
         return False
