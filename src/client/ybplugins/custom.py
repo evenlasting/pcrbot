@@ -72,11 +72,11 @@ class Custom:
         # 如果需要使用，请注释掉下面一行
 
         cmd = ctx['raw_message']
-        if cmd == 'cjb':
+        if cmd .startswith('会长'):
 
             # 调用api发送消息，详见cqhttp文档
-            await self.api.send_private_msg(
-                user_id=996955087, message='收到问好')
+            #await self.api.send_private_msg(
+            #    user_id=996955087, message='收到问好')
 
             # 返回字符串：发送消息并阻止后续插件
             return 'sb'
