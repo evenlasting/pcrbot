@@ -43,8 +43,8 @@ class Custom:
         # 此时没有running_loop，不要直接使用await，请使用asyncio.ensure_future并指定loop=asyncio.get_event_loop()
 
         # 如果需要启用，请注释掉下面一行
-        return
-
+        # return
+        self.resp={}
         # 这是来自yobot_config.json的设置，如果需要增加设置项，请修改default_config.json文件
         self.setting = glo_setting
 
@@ -80,6 +80,16 @@ class Custom:
 
             # 返回字符串：发送消息并阻止后续插件
             return 'sb'
+
+        if cmd.startswith('添加回复'):
+            message_list=cmd.split()
+            if len(message_list)!=3:
+                return "格式错误，请这样使用：“添加回复 会长 sb"
+            self.resp[message_list[1]]=message_list[2]
+            return "添加成功 "+message_list[1]+"=>"+message_list[2]
+        
+        if self.resp.get(cmd)!=None:
+            return self.resp[cmd]
 
         # 返回布尔值：是否阻止后续插件（返回None视作False）
         return False
